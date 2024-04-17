@@ -13,7 +13,8 @@
     function runPythonHelp() {
       // Get the path to the Python script.
     //   var pythonScriptPath = "./ByteBuggy.py";      // Run the Python script.
-      subprocess.run(["sudo", "./ByteBuggy.py", "-h"]);
+    //   subprocess.run(['sudo', './ByteBuggy.py', '-h']);
+    subprocess.check_output(['sudo', './ByteBuggy.py', '-h'], stderr=subprocess.STDOUT, universal_newlines=True)
     }
   </script>
 </body>
