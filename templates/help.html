@@ -2,22 +2,14 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>help commands</title>
-</head>
-<body>
-  <button onclick="runPythonHelp()">help commands</button>
-
-  <script>
-    function runPythonHelp() {
-      // Get the path to the Python script.
-    //   var pythonScriptPath = "./ByteBuggy.py";      // Run the Python script.
-    //   subprocess.run(['sudo', './ByteBuggy.py', '-h']);
-    subprocess.check_output(['sudo', './ByteBuggy.py', '-h'], stderr=subprocess.STDOUT, universal_newlines=True)
-    }
-  </script>
-</body>
-</html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Help Page</title>
+    </head>
+    <body>
+        <pre>{{ help_content }}</pre>
+    </body>
+    </html>
 
 {% endblock %}

@@ -1,4 +1,7 @@
 from flask import Flask, render_template
+import argparse
+from io import StringIO
+import sys
 
 app = Flask(__name__)
 
@@ -20,7 +23,19 @@ def contact_us():
 
 @app.route('/help')
 def help():
-    return render_template('help.html')
+    parser = argparse.ArgumentParser(
+        description="Example script to demonstrate argparse help.",
+        formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=50, width=100)
+    )
+    parser.add_argument('-v', '--verbose', action='count', default=0, help='Increase verbosity.')
+    parser.add_argument('-i', '--interface', type=str, help='Network interface to use.')
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    # Capture the help output
+    old_stdout = sys.stdout
+    sys.stdout = help_file = StringIO()
+    parser.print_help()
+    sys.stdout = old_stdout
+    help_content = help_file.getvalue()
+    help_file.close()
+    
+    return render_template('help.html', help_content=help_content)
