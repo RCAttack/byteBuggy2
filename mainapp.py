@@ -18,7 +18,7 @@ def about_us():
 def contact_us():
     return render_template('contact_us.html')
 
-app.route('/help')
+@app.route('/help')
 def help():
     return render_template('help.html')
 
