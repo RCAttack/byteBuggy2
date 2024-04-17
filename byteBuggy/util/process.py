@@ -29,11 +29,11 @@ class Process(object):
         if type(command) is not str or ' ' in command or shell:
             shell = True
             if Configuration.verbose > 1:
-                print('\n [?]  Executing (Shell): %s' % command)
+                print('\n  Executing (Shell): %s' % command)
         else:
             shell = False
             if Configuration.verbose > 1:
-                print('\n [?] Executing: %s' % command)
+                print('\n Executing: %s' % command)
 
         pid = Popen(command, cwd=cwd, stdout=PIPE, stderr=PIPE, shell=shell)
         pid.wait()
@@ -73,7 +73,7 @@ class Process(object):
         self.command = command
 
         if Configuration.verbose > 1:
-            print('\n [?]  Executing: %s' % ' '.join(command))
+            print('\n  Executing: %s' % ' '.join(command))
 
         self.out = None
         self.err = None
@@ -162,7 +162,7 @@ class Process(object):
                 cmd = ' '.join(cmd)
 
             if Configuration.verbose > 1:
-                print('\n [?]  sending interrupt to PID %d (%s)' % (pid, cmd))
+                print('\n  sending interrupt to PID %d (%s)' % (pid, cmd))
 
             os.kill(pid, signal.SIGINT)
 
@@ -173,7 +173,7 @@ class Process(object):
                 if time.time() - start_time > wait_time:
                     # We waited too long for process to die, terminate it.
                     if Configuration.verbose > 1:
-                        print('\n [?]  Waited > %0.2f seconds for process to die, killing it' % wait_time)
+                        print('\n  Waited > %0.2f seconds for process to die, killing it' % wait_time)
                     os.kill(pid, signal.SIGTERM)
                     self.pid.terminate()
                     break

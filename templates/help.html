@@ -9,8 +9,8 @@
   <script>
     function runPythonHelp() {
       // Get the path to the Python script.
-      var pythonScriptPath = "byteBuggy/args.py";      // Run the Python script.
-      subprocess.run(["python", pythonScriptPath]);
+      var pythonScriptPath = "./ByteBuggy.py";      // Run the Python script.
+      subprocess.run(["sudo", pythonScriptPath, "-h"]);
     }
   </script>
 </body>
