@@ -2,13 +2,17 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <title>Help Page</title>
+        <title>Help Arguments</title>
     </head>
     <body>
-        <pre>{{ help_content }}</pre>
+        <h1>Help Command Line Arguments</h1>
+        <ul>
+        {% for key, value in args.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+        </ul>
     </body>
     </html>
 
