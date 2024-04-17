@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>help commands</title>
+</head>
+<body>
+  <button onclick="runPythonHelp()">help commands</button>
+
+  <script>
+    function runPythonHelp() {
+      // Get the path to the Python script.
+      var pythonScriptPath = "byteBuggy/args.py";      // Run the Python script.
+      subprocess.run(["python", pythonScriptPath]);
+    }
+  </script>
+</body>
+</html>
