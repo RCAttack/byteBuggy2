@@ -28,7 +28,7 @@ def help():
     args_obj = Arguments(Configuration)
     args_dict = vars(args_obj.args)
     
-    return render_template('help.html', args=args_dict)
+    return render_template('help.html',  args=args_dict)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

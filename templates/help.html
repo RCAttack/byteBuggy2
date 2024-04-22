@@ -7,12 +7,17 @@
         <title>Help Arguments</title>
     </head>
     <body>
+        <div style="display: flex; flex-direction: column;"
+        >
         <h1>Help Command Line Arguments</h1>
-        <ul>
-        {% for key, value in args.items() %}
-            <li>{{ key }}: {{ value }}</li>
-        {% endfor %}
-        </ul>
+        <br>
+        <br>
+            <ul>
+            {% for key, value in args.items() %}
+                <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+            </ul>
+        </div>
     </body>
     </html>
 
