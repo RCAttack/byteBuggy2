@@ -32,7 +32,7 @@
         <button id="button3" class ="button-transparent" onclick="scanWifi()" style = "border-radius: 5px;">Scan for Wi-Fi Networks</button>
         <select id="network-select" class ="button-transparent">
             <option>Select Network</option>
-            <option>sample network option</option>
+            <option>sample network option 1</option>
             <option>sample network option 2</option>
         </select>
     </div>
@@ -56,6 +56,11 @@
 
     <button id="cls" class ="button-regular" onclick="cls()" style = "border-radius: 5px;">Clear Screen</button>
 
+    <br>
+    <br>
+
+    <button onclick="runCommand()">Test terminal</button>
+
 
 </section>
 
@@ -71,14 +76,27 @@
 
 <script>
 
-    <!--Transparent functionality-->
-
     window.onload = function() {
     var buttons = document.querySelectorAll('.button-transparent');
     buttons.forEach(function(button) {
         button.disabled = true; // Disable the button
        }); 
     };
+
+    function runCommand() {
+            fetch('/run-command', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('log').textContent = 'Error: ' + data.error;
+                    } else {
+                        document.getElementById('log').textContent = data.output;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('log').textContent = 'Error: ' + error.message;
+                });
+        }
 
 
    
