@@ -3,6 +3,7 @@ from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def main():
     return render_template('main.html')
@@ -23,12 +24,12 @@ def contact_us():
 def help():
     from byteBuggy.config import Configuration
     from byteBuggy.args import Arguments
-
-    Configuration.initialize(False)
-    args_obj = Arguments(Configuration)
-    args_dict = vars(args_obj.args)
     
-    return render_template('help.html',  args=args_dict)
+    config = Configuration
+    args = Arguments(config)
+
+    help_text = args.get_help_text()
+    return render_template('help.html', help_text=help_text)
 
 @app.route('/run-command', methods=['POST'])
 def run_command():
