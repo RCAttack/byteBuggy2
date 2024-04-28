@@ -3,7 +3,9 @@
 
 # from .util.color import Color
 
-import argparse, sys
+import argparse, sys, io
+
+from io import StringIO
 
 class Arguments(object):
     ''' Holds arguments used by the byteBuggy '''
@@ -16,9 +18,22 @@ class Arguments(object):
 
     def _verbose(self, msg):
         if self.verbose:
-            return print(msg)
+            return msg
         else:
             return argparse.SUPPRESS
+        
+    def get_help_text(self):
+        # Redirect output to capture help text
+        old_stdout = sys.stdout
+        sys.stdout = StringIO()
+        try:
+            self.get_arguments()
+        except SystemExit:
+            # argparse calls sys.exit() when printing help; catch it to prevent exit
+            pass
+        help_text = sys.stdout.getvalue()
+        sys.stdout = old_stdout
+        return help_text
 
     def get_arguments(self):
         ''' Returns parser.args() containing all program arguments '''
@@ -34,8 +49,9 @@ class Arguments(object):
         self._add_pmkid_args(parser.add_argument_group('PMKID'))
         # self._add_eviltwin_args(parser.add_argument_group('EVIL TWIN'))
         self._add_command_args(parser.add_argument_group('COMMANDS'))
+        
 
-        return parser.parse_args()
+        return parser
 
 
     def _add_global_args(self, glob):

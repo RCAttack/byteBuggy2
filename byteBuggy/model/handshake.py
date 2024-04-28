@@ -115,14 +115,19 @@ class Handshake(object):
 
 
     def aircrack_handshakes(self):
-        '''Returns tuple (BSSID,None) if aircrack thinks self.capfile contains a handshake / can be cracked'''
+        """Returns tuple (BSSID,None) if aircrack thinks self.capfile contains a handshake / can be cracked"""
         if not self.bssid:
             return []  # Aircrack requires BSSID
 
-        command = 'echo "" | aircrack-ng -a 2 -w - -b %s "%s"' % (self.bssid, self.capfile)
-        (stdout, stderr) = Process.call(command)
+        command = [
+            'aircrack-ng',
+            '-b', self.bssid,
+            self.capfile
+        ]
 
-        if 'passphrase not in dictionary' in stdout.lower():
+        proc = Process(command, devnull=False)
+
+        if 'potential target' in proc.stdout().lower() and 'no matching network' not in proc.stdout().lower():
             return [(self.bssid, None)]
         else:
             return []
