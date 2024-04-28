@@ -124,17 +124,17 @@ class AttackAll(object):
         print(' %s' % prompt)
 
         prompt = ' Do you want to'
-        options = '('
+        options = ' '
 
         if attacks_remaining > 0:
             prompt += ' continue attacking,'
-            options += 'C, '
+            options += 'C'
 
         if targets_remaining > 0:
             prompt += ' skip to the next target,'
-            options += 's, '
+            options += 's'
 
-        options += 'e)'
+        options += 'e'
         prompt += ' or exit %s? ' % options
 
         answer = input(print(prompt)).lower()
