@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify
 
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -41,6 +42,7 @@ def run_command():
         return jsonify({'output': result.stdout}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 
 if __name__ == '__main__':
