@@ -50,6 +50,8 @@ class Arguments(object):
         # self._add_eviltwin_args(parser.add_argument_group('EVIL TWIN'))
         self._add_command_args(parser.add_argument_group('COMMANDS'))
         
+        parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
+                            help='Show this help message and exit')
 
         return parser
 
