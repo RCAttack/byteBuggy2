@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Byte Buggy Web Interface</title>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+    <style> 
+       .green-text {
+            color: green;
+        }
+
+        .initialize {
+            display: inline-block
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Byte Buggy Web Interface v0.7</h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">main</a></li>
+                <!--<li><a href="/guide">guide</a></li> To remove -->
+                <!--<li><a href="/about-us">about us</a></li>To remove--> 
+                <!--<li><a href="/contact-us">contact us</a></li>To remove-->
+                <li><a href="/help">help</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
+
+    <script>
+        // Add your JavaScript here
+    </script>
+</body>
+
+</html>
+
