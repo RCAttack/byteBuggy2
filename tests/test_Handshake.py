@@ -27,33 +27,30 @@ class TestHandshake(unittest.TestCase):
         except Exception:
             self.fail()
 
-    # @unittest.skipUnless(Process.exists('tshark'), 'tshark is missing')
-    # def testHandshakeTshark(self):
-    #     hs_file = self.getFile('handshake_exists.cap')
-    #     hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
-    #     assert(len(hs.tshark_handshakes()) > 0)
+    @unittest.skipUnless(Process.exists('tshark'), 'tshark is missing')
+    def testHandshakeTshark(self):
+        hs_file = self.getFile('handshake_exists.cap')
+        hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
+        assert(len(hs.tshark_handshakes()) > 0)
 
-    # @unittest.skipUnless(Process.exists('pyrit'), 'pyrit is missing')
-    # def testHandshakePyrit(self):
-    #     hs_file = self.getFile('handshake_exists.cap')
-    #     hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
-    #     assert(len(hs.pyrit_handshakes()) > 0)
+    @unittest.skipUnless(Process.exists('pyrit'), 'pyrit is missing')
+    def testHandshakePyrit(self):
+        hs_file = self.getFile('handshake_exists.cap')
+        hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
+        assert(len(hs.pyrit_handshakes()) > 0)
 
-    # @unittest.skipUnless(Process.exists('cowpatty'), 'cowpatty is missing')
-    # def testHandshakeCowpatty(self):
-    #     hs_file = self.getFile('handshake_exists.cap')
-    #     hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
-    #     hs.divine_bssid_and_essid()
-    #     assert(len(hs.cowpatty_handshakes()) > 0)
+    @unittest.skipUnless(Process.exists('cowpatty'), 'cowpatty is missing')
+    def testHandshakeCowpatty(self):
+        hs_file = self.getFile('handshake_exists.cap')
+        hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
+        hs.divine_bssid_and_essid()
+        assert(len(hs.cowpatty_handshakes()) > 0)
 
     @unittest.skipUnless(Process.exists('aircrack-ng'), 'aircrack-ng is missing')
     def testHandshakeAircrack(self):
         hs_file = self.getFile('handshake_exists.cap')
         hs = Handshake(hs_file, bssid='A4:2B:8C:16:6B:3A')
-        #  debugging 
-        handshake_result = hs.aircrack_handshakes()
-        self.assertTrue(len(handshake_result) > 0, f"Expected non-empty result, got {handshake_result}")
-        # debugging
+        assert(len(hs.aircrack_handshakes()) > 0)
 
 
 if __name__ == '__main__':
