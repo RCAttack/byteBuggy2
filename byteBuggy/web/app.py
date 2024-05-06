@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify
 
+import sys
+sys.path.append('byteBuggy2/byteBuggy')
 
 app = Flask(__name__)
 
@@ -22,8 +24,8 @@ def contact_us():
 
 @app.route('/help')
 def help():
-    from byteBuggy.config import Configuration
-    from byteBuggy.args import Arguments
+    from ..config import Configuration
+    from ..args import Arguments
     
     config = Configuration
     args = Arguments(config)
